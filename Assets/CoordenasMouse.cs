@@ -12,6 +12,7 @@ public class NewBehaviourScript : MonoBehaviour
     public InputField primerInut;
     public Text textoObjetoSeleccionado;
     public Text mostrarVelocidad;
+    public Text mostrarFuerza;
     
     public GameObject aroVerde;
 
@@ -19,6 +20,7 @@ public class NewBehaviourScript : MonoBehaviour
     public InputField segundoInput;
     public Text textoObjetoSeleccionado2;
     public Text mostrarVelocidad2;
+    public Text mostrarFuerza2;
     public GameObject aroRojo;
 
 
@@ -85,7 +87,10 @@ public class NewBehaviourScript : MonoBehaviour
                                     Rigidbody rb = objetoSeleccionado.GetComponent<Rigidbody>();
                                     Vector3 velocidad = rb.GetPointVelocity(objetoSeleccionado.transform.position);
                                     // Asignar la nueva carga al componente PropiedadesObjetos
+                                    
                                     mostrarVelocidad.text = velocidad.magnitude.ToString("F2") + " m/s";
+
+                                    mostrarFuerza.text    = propiedades.fuerza.ToString("F2") + " N";
                                     propiedades.Carga = cargaActual;
                                 }
                             }
@@ -122,7 +127,9 @@ public class NewBehaviourScript : MonoBehaviour
                                     Rigidbody rb = objetoSeleccionado2.GetComponent<Rigidbody>();
                                     Vector3 velocidad = rb.GetPointVelocity(objetoSeleccionado2.transform.position);
                                     // Asignar la nueva carga al componente PropiedadesObjetos
+                                    
                                     mostrarVelocidad2.text = velocidad.magnitude.ToString("F2") + " m/s";
+                                    mostrarFuerza2.text    = propiedades.fuerza.ToString("F2") + " N";
                                     propiedades.Carga = cargaActual;
 
                                 }
