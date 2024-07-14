@@ -44,26 +44,30 @@ public class PropiedadesObjetos : MonoBehaviour
                         // Realizar acciones basadas en la carga del objeto
                         Vector3 direccion = (transform.position - collider.transform.position).normalized;
                         
-                        if (distancia>1)
-                        {
-                            float k = 9e9f;;
-                            fuerza = (k * Carga * 1e-4f * carga * 1e-4f) / (float)Math.Pow(distancia, 2);
+                        if (distancia > 0)
+                            {
+                                const float k = 8.99e9f;
+                                float convertedCarga1 = carga * 1e-4f;
+                                float convertedCarga2 = Carga * 1e-4f;
 
-                        // Aplicar la fuerza al objeto actual en sentido contrario
-                        rb.AddForce(direccion * fuerza, ForceMode.Force);
-                        }
+                                fuerza = (k * convertedCarga1 * convertedCarga2) / (float)Math.Pow(distancia, 2);
+
+                                // Aplicar la fuerza al objeto actual en sentido contrario
+                                rb.AddForce(direccion.normalized * fuerza, ForceMode.Force);
+                            }
+
                     }
 
                 }
     }
 
-    void OnDrawGizmosSelected()
+   /* void OnDrawGizmosSelected()
     {
         // Dibujar una esfera de detección en el editor
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, radioDeteccion);
     }
-
+*/
 
 
 }

@@ -291,7 +291,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (objetoSeleccionado != null && objetoSeleccionado2 != null)
         {
             // Calcula la distancia entre los dos objetos
-            float distancia = (Vector3.Distance(objetoSeleccionado.transform.position, objetoSeleccionado2.transform.position))-1f;
+            float distancia = (Vector3.Distance(objetoSeleccionado.transform.position, objetoSeleccionado2.transform.position));
             
             // Muestra la distancia en la UI, formateada a 2 decimales
             mostrarDistancia.text = distancia.ToString("F2") + " metros";
