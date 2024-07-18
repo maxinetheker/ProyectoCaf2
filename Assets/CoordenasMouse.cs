@@ -34,8 +34,13 @@ public class NewBehaviourScript : MonoBehaviour
 
     public GameObject flechasDireccion;
     public GameObject quitPrefab;
+    public GameObject objCilindro;
+    public GameObject objEsfera2;
 
     private int contadorObjetos = 1;
+    private int contadorCilindros = 1;
+
+    private int contadorEsfera2 = 1;
     private float radioCirculo = 0.2f;
 
 
@@ -90,7 +95,7 @@ public class NewBehaviourScript : MonoBehaviour
                                     
                                     mostrarVelocidad.text = velocidad.magnitude.ToString("F2") + " m/s";
 
-                                    mostrarFuerza.text    = propiedades.fuerza.ToString("F2") + " N";
+                                    mostrarFuerza.text    = (propiedades.fuerza < 0 ? -propiedades.fuerza : propiedades.fuerza).ToString("F2") + " N";
                                     propiedades.Carga = cargaActual;
                                 }
                             }
@@ -129,7 +134,9 @@ public class NewBehaviourScript : MonoBehaviour
                                     // Asignar la nueva carga al componente PropiedadesObjetos
                                     
                                     mostrarVelocidad2.text = velocidad.magnitude.ToString("F2") + " m/s";
-                                    mostrarFuerza2.text    = propiedades.fuerza.ToString("F2") + " N";
+                                    
+                                    
+                                    mostrarFuerza2.text    = (propiedades.fuerza < 0 ? -propiedades.fuerza : propiedades.fuerza).ToString("F2") + " N";
                                     propiedades.Carga = cargaActual;
 
                                 }
@@ -243,6 +250,41 @@ public class NewBehaviourScript : MonoBehaviour
             contadorObjetos++;
 
         }
+
+
+
+        if (Input.GetKeyDown(KeyCode.S) && (contadorCilindros <= 6))
+        {
+            // Crear una nueva posición 10 unidades sobre el eje Z
+            Vector3 nuevaPosicion = posicionGolpe + new Vector3(0, 2, 0);
+
+            // Instanciar un nuevo objeto en la nueva posición
+            GameObject nuevoObjeto = Instantiate(objCilindro, nuevaPosicion, Quaternion.identity);
+
+            // Asignar un nombre al objeto con el número de objeto creado
+            nuevoObjeto.name = "Cilindro(" + contadorCilindros.ToString() + ")";
+
+            // Incrementar el contador de objetos
+            contadorCilindros++;
+
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.D) && (contadorEsfera2 <= 6))
+        {
+            // Crear una nueva posición 10 unidades sobre el eje Z
+            Vector3 nuevaPosicion = posicionGolpe + new Vector3(0, 2, 0);
+
+            // Instanciar un nuevo objeto en la nueva posición
+            GameObject nuevoObjeto = Instantiate(objEsfera2, nuevaPosicion, Quaternion.identity);
+
+            // Asignar un nombre al objeto con el número de objeto creado
+            nuevoObjeto.name = "Esfera Grande (" + contadorEsfera2.ToString() + ")";
+
+            // Incrementar el contador de objetos
+            contadorEsfera2++;
+
+        }
         
 
 
@@ -282,10 +324,6 @@ public class NewBehaviourScript : MonoBehaviour
         circuloRojoActual.transform.localScale = new Vector3(escala, escala, 1f);
         }
 
-        if(objetoSeleccionado != null && objetoSeleccionado2 != null) {
-
-
-        }
 
         
         if (objetoSeleccionado != null && objetoSeleccionado2 != null)
